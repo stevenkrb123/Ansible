@@ -1,0 +1,11 @@
+---
+- name: Configure top level configuration
+  cisco.ios.ios_config:
+    lines: hostname {{ ansible_host }}
+
+- name: Configure interface settings
+  cisco.ios.ios_config:
+    lines:
+      - description test interface
+      - ip address 10.0.0.8 255.255.255.0
+    parents: interface Ethernet1

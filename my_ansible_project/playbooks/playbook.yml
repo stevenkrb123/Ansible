@@ -1,0 +1,32 @@
+---
+- name: Configure Router
+  hosts: routers
+  gather_facts: no
+  vars_files:
+    -../secrets.yml
+  tasks:
+    - name: Ensure we can connect to the router
+      cisco.ios.ios_command:
+        commands: show version
+          #   ansible.builtin.shell:
+          #     #cmd: "echo Connected to router"
+          #     cmd: "dir"
+          #      register: result
+        #      ignore_errors: yes
+        #    - name: Fail if unable to connect to the router
+        #      ansible.builtin.fail:
+        #        msg: "Unable to connect to router"
+        #      when: result is failed
+        #    - name: Perform privileged exec mode tasks
+        #      cisco.ios.ios_command:
+        #        commands:
+        #          - enable
+        #            #          - "{{ user_config_password }}"
+        #        provider:
+        #          username: "{{ ansible_user }}"
+        #            #password: "{{ router_ssh_password }}"
+        #          password: 1234
+        #          authorize: yes
+        #          auth_pass: "{{ user_config_password }}"
+        #
+        #

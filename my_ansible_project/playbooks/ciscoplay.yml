@@ -1,0 +1,24 @@
+---
+- name: Configure Cisco IOS Device
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Set hostname
+      cisco.ios.ios_config:
+        lines:
+          - hostname Router
+
+    - name: Configure Ethernet0/3
+      cisco.ios.ios_config:
+        lines:
+          - description Connection to LAN
+          - ip address 20.0.0.1 255.255.255.0
+          - no shutdown
+        parents: 
+          - interface Ethernet0/3
+
+    - name: Save configuration
+      cisco.ios.ios_command:
+        commands:
+          - write memory
+
